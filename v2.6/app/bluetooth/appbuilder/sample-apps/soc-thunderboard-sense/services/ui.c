@@ -1,0 +1,169 @@
+/***************************************************************************//**
+ * @file
+ * @brief ui.c
+ *******************************************************************************
+ * # License
+ * <b>Copyright 2018 Silicon Laboratories Inc. www.silabs.com</b>
+ *******************************************************************************
+ *
+ * The licensor of this software is Silicon Laboratories Inc. Your use of this
+ * software is governed by the terms of Silicon Labs Master Software License
+ * Agreement (MSLA) available at
+ * www.silabs.com/about-us/legal/master-software-license-agreement. This
+ * software is distributed to you in Source Code format and is governed by the
+ * sections of the MSLA applicable to Source Code.
+ *
+ ******************************************************************************/
+
+/* standard library headers */
+#include <stdint.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+/* BG stack headers */
+#include "bg_types.h"
+#include "gatt_db.h"
+#include "native_gecko.h"
+#include "infrastructure.h"
+
+/* plugin headers */
+#include "connection.h"
+
+/* Own header*/
+#include "ui.h"
+#include "aio.h"
+
+#include "thunderboard/board.h"
+#include "thunderboard/util.h"
+
+#include "radio.h"
+#include "radio_ble.h"
+
+uint8_t uiButtonState;
+uint8_t uiRGBLEDEnable;
+
+uint8_t uiRGBLEDState[4] = { 0x0, 0x0, 0x50, 0x70 };
+
+void uiInit(void)
+{
+  uiButtonState  = BOARD_pushButtonGetState();
+  uiRGBLEDEnable = 0;
+
+  return;
+}
+
+void uiReadButtons(void)
+{
+  struct gecko_msg_gatt_server_send_user_read_response_rsp_t* gssurrrsp = NULL;
+  uiButtonState = BOARD_pushButtonGetState();
+  printf("UI: Buttons = %X\r\n", uiButtonState);
+
+  /* Send response to read request */
+  gssurrrsp = gecko_cmd_gatt_server_send_user_read_response(conGetConnectionId(),
+                                                            gattdb_ui_buttons,
+                                                            0,
+                                                            sizeof(uiButtonState),
+                                                            (uint8_t *)&uiButtonState);
+  APP_ASSERT_DBG(!gssurrrsp->result, gssurrrsp->result);
+  return;
+}
+
+void uiLEDWrite(uint8array *writeValue)
+{
+  struct gecko_msg_gatt_server_send_user_write_response_rsp_t* gssuwrrsp = NULL;
+
+  printf("UI: LED write; %d : %02x\r\n",
+         writeValue->len,
+         writeValue->data[0]
+         );
+
+  gssuwrrsp = gecko_cmd_gatt_server_send_user_write_response(
+    conGetConnectionId(),
+    gattdb_ui_leds,
+    UI_WRITE_OK
+    );
+  APP_ASSERT_DBG(!gssuwrrsp->result, gssuwrrsp->result);
+
+  return;
+}
+
+void uiRGBLEDWrite(uint8array *writeValue)
+{
+  uint8_t r, g, b;
+  uint8_t m;
+  uint8_t statusCode;
+  uint8_t enableMask;
+  struct gecko_msg_gatt_server_send_user_write_response_rsp_t* gssuwrrsp = NULL;
+
+  printf("UI: RGBLED write; %d : %02x:%02x:%02x:%02x\r\n",
+         writeValue->len,
+         writeValue->data[0],
+         writeValue->data[1],
+         writeValue->data[2],
+         writeValue->data[3]
+         );
+
+  if ( writeValue->len != 4 ) {
+    statusCode = UI_WRITE_OK;
+  } else {
+    m = writeValue->data[0];
+    r = writeValue->data[1];
+    g = writeValue->data[2];
+    b = writeValue->data[3];
+
+    memcpy(uiRGBLEDState, writeValue->data, sizeof(uiRGBLEDState));
+
+    enableMask = m & 0xF;
+    if ( UTIL_isLowPower() == false ) {
+      BOARD_rgbledEnable(false, ~enableMask);
+      BOARD_rgbledEnable(true, enableMask);
+      BOARD_rgbledSetColor(r, g, b);
+
+      if ( enableMask == 0 ) {
+        /* Prevent the PWM to keep lighting up the small LEDs */
+        BOARD_rgbledSetColor(0, 0, 0);
+      } else {
+        /* Notify AIO service that the LEDs are now disabled */
+        aioLEDWasDisabled();
+      }
+    }
+
+    statusCode = UI_WRITE_OK;
+  }
+
+  gssuwrrsp = gecko_cmd_gatt_server_send_user_write_response(
+    conGetConnectionId(),
+    gattdb_ui_rgbleds,
+    statusCode
+    );
+  APP_ASSERT_DBG(!gssuwrrsp->result, gssuwrrsp->result);
+
+  return;
+}
+
+void uiRGBLEDRead(void)
+{
+  struct gecko_msg_gatt_server_send_user_read_response_rsp_t* gssurrrsp = NULL;
+  printf("UI: RGBLED read : %02x:%02x:%02x:%02x\r\n",
+         uiRGBLEDState[0],
+         uiRGBLEDState[1],
+         uiRGBLEDState[2],
+         uiRGBLEDState[3]
+         );
+
+  /* Send response to read request */
+  gssurrrsp = gecko_cmd_gatt_server_send_user_read_response(conGetConnectionId(),
+                                                            gattdb_ui_rgbleds,
+                                                            0,
+                                                            sizeof(uiRGBLEDState),
+                                                            (uint8_t *)&uiRGBLEDState);
+  APP_ASSERT_DBG(!gssurrrsp->result, gssurrrsp->result);
+  return;
+}
+
+void uiRGBLEDWasDisabled(void)
+{
+  uiRGBLEDState[0] = 0;
+
+  return;
+}

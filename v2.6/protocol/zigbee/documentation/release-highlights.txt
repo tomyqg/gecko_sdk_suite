@@ -1,0 +1,8 @@
+What's new in EmberZnet 6.6.1.0:
+  * Selected quality improvements and bug fixes
+
+What's new in EmberZnet 6.6.0.0:
+  * Green Power Device Support
+  * Zigbee Application Framework Updates
+  * WiFi Coexistence Improvements
+  * Various Bug Fixes

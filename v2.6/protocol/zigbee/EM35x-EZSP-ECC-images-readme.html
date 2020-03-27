@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1">
+<title>EmberZNet 6.4.x EM35x EZSP ECC Images</title>
+
+</head><body>
+
+<h2>EM35x EZSP images containing the ECC library</h2>
+
+<h3>Overview</h3>
+This release is meant to be used with EmberZNet 6.4.x release and contains the EZSP images for EM35x that are built with the ECC Library from Certicom 
+<br>
+<br><i><b>Software Versions</b></i> <br>
+<li>stack software -- please refer to the (stack) release note for the build number
+<li>ECC Library - version 1.0.1.20
+
+<br>
+<br><i><b>EZSP images</b></i><br>
+EM35x EZSP images provided support all optional libraries, including both 163k1 and 283k1 ECC.  See the table at the end of this document for a description of these optional libraries.  EBL files can be loaded using the bootloader or em3xx_load - the tokens are not erased during the load.
+<br>
+<br>
+<li><b>ncp-spi-use-with-ezsp-spi-btl-ecc-6.6.0.ebl</b> -- This image is for use with a SPI connected host.  Can run as any type of ZigBee device.  This image is intended to be run with the ezsp-spi bootloader (found in tool/bootloader-em35x directory as part of stack installer).  The image for em357, em357-ncp-spi-use-with-ezsp-spi-btl-ecc-5.6.0.ebl, uses a 32KB SimEEPROM - it supports 100 binding table and link key table entries each, as well as 32 user storage tokens (for use with ezspSetToken()).
+<li><b>ncp-spi-with-ezsp-spi-btl-ecc-6.6.0.hex</b> -- This image is for use with a SPI connected host.  Can run as any type of ZigBee device.  This image includes ezsp-spi bootloader.  The image for em357, em357-ncp-spi-with-ezsp-spi-btl-ecc-5.6.0.hex, uses a 32KB SimEEPROM - it supports 100 binding table and link key table entries each, as well as 32 user storage tokens (for use with ezspSetToken()).
+<li><b>ncp-uart-rts-cts-use-with-serial-uart-btl-ecc-6.6.0.ebl</b> -- This image is for use with a UART connected host using hardware flow control (RTS/CTS).  Can run as any type of ZigBee device.  This image is intended to be run with the serial-uart bootloader (found in tool/bootloader-em35x directory as part of stack installer).  The image for em357, em357-ncp-uart-rts-cts-use-with-serial-uart-btl-ecc-5.6.0.ebl, uses a 32KB SimEEPROM - it supports 100 binding table and link key table entries each, as well as 32 user storage tokens (for use with ezspSetToken()).
+<li><b>ncp-uart-rts-cts-with-serial-uart-btl-ecc-6.6.0.hex</b> -- This image is for use with a UART connected host using hardware flow control (RTS/CTS).  Can run as any type of ZigBee device.  This image includes serial-uart bootloader.  The image for em357, em357-ncp-uart-rts-cts-with-serial-uart-btl-ecc-5.6.0.hex, uses a 32KB SimEEPROM - it supports 100 binding table and link key table entries each, as well as 32 user storage tokens (for use with ezspSetToken()).
+<li><b>ncp-uart-xon-xoff-use-with-serial-uart-btl-ecc-6.6.0.ebl</b> -- This image is for use with a UART connected host using hardware flow control (XON/XOFF).  Can run as any type of ZigBee device.  This image is intended to be run with the serial-uart bootloader (found in tool/bootloader-em35x directory as part of stack installer).  The image for em357, em357-ncp-uart-xon-xoff-use-with-serial-uart-btl-ecc-5.6.0.ebl, uses a 32KB SimEEPROM - it supports 100 binding table and link key table entries each, as well as 32 user storage tokens (for use with ezspSetToken()).
+<li><b>ncp-uart-xon-xoff-with-serial-uart-btl-ecc-6.6.0.hex</b> -- This image is for use with a UART connected host using hardware flow control (XON/XOFF).  Can run as any type of ZigBee device.  This image includes serial-uart bootloader.  The image for em357, em357-ncp-uart-xon-xoff-with-serial-uart-btl-ecc-5.6.0.hex, uses a 32KB SimEEPROM - it supports 100 binding table and link key table entries each.
+<br>
+<br><i><b>The following table details which optional libraries are supported on the various images:</b><i><br>
+<br>
+<table border="1">
+<tr>
+<th>EZSP Images</th>
+<th>Mfg Lib</th>
+<th>End Device Bind Lib</th>
+<th>Binding Table Lib</th>
+<th>Alarm Lib</th>
+<th>EZSP Trace</th>
+</tr>
+<tr align="center">
+<td>ncp-spi-use-with-ezsp-spi-btl-ecc-6.6.0.ebl</td><td>Real</td><td>Stub</td><td>Real</td><td>Stub</td><td>Yes</td>
+</tr>
+<tr align="center">
+<td>ncp-spi-with-ezsp-spi-btl-ecc-6.6.0.hex</td><td>Real</td><td>Stub</td><td>Real</td><td>Stub</td><td>Yes</td>
+</tr>
+<tr align="center">
+<td>ncp-uart-rts-cts-use-with-serial-uart-btl-ecc-6.6.0.ebl</td><td>Real</td><td>Real</td><td>Real</td><td>Real</td><td>Yes</td>
+</tr>
+<tr align="center">
+<td>ncp-uart-rts-cts-with-serial-uart-btl-ecc-6.6.0.hex</td><td>Real</td><td>Real</td><td>Real</td><td>Real</td><td>Yes</td>
+</tr>
+<tr align="center">
+<td>ncp-uart-xon-xoff-use-with-serial-uart-btl-ecc-6.6.0.ebl</td><td>Real</td><td>Real</td><td>Real</td><td>Real</td><td>Yes</td>
+</tr>
+<tr align="center">
+<td>ncp-uart-xon-xoff-with-serial-uart-btl-ecc-6.6.0.hex</td><td>Real</td><td>Real</td><td>Real</td><td>Real</td><td>Yes</td>
+</tr>
+</table>
+<br>
+<br>
+Note:
+<li>Real � means implementation of the features are included.
+<li>Stub � means implementation of the features are not included; only the external interface is implemented.
+<br>
+<hr>
+</body>
+</html>

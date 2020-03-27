@@ -1,0 +1,91 @@
+/** @brief Gpd Commissioning
+ *
+ * This function is called by the Green Power Sink Plugin to notify the
+ * application of a Green Power Device that has requested commissioning with
+ * this sink. Return true to accept, false to reject.
+ *
+ * @param appInfo   Ver.: always
+ */
+bool emberAfPluginGreenPowerServerGpdCommissioningCallback(EmberGpApplicationInfo * appInfo)
+{
+  return true;
+}
+
+/** @brief Gpd Commissioning
+ *
+ * This function is called by the Green Power Sink Plugin to notify the
+ * application of a Green Power Security Processing failed for a incomming.
+ * Return true to proceed with the process, false to drop the packet.
+ *
+ * @param appInfo   Ver.: always
+ */
+bool emberAfPluginGreenPowerServerGpdSecurityFailureCallback(EmberGpAddress gpdAddr)
+{
+  return true;
+}
+
+/** @brief Gpd Commissioning
+ *
+ * This function is called by the Green Power Sink Plugin to notify the
+ * application of a Green Power Gp Notification of an incomming gpd command.
+ * Return true to handle in application.
+ *
+ * @param appInfo   Ver.: always
+ */
+bool emberAfGreenPowerClusterGpNotificationForwardCallback(EmberGpAddress * addr,
+                                                           uint8_t gpdCommandId,
+                                                           uint8_t * gpdCommandPayload)
+{
+  return false;
+}
+
+/** @brief Gpd Commissioning
+ *
+ * This function is called by the Green Power Sink Plugin to notify the
+ * application of a Green Power Gp Notification without translation(endpoint is 0xFC).
+ *
+ * @param appInfo   Ver.: always
+ */
+void emberAfGreenPowerClusterPassFrameWithoutTranslationCallback(EmberGpAddress * addr,
+                                                                 uint8_t gpdCommandId,
+                                                                 uint8_t * gpdCommandPayload)
+{
+}
+
+/** @brief Gpd Commissioning
+ *
+ * This function is called by the Green Power Server upon the completion of the pairing
+ * and to indicate the closure of the pairing session.
+ *
+ * @param appInfo   Ver.: always
+ */
+void emberAfGreenPowerServerPairingCompleteCallback(uint8_t numberOfEndpoints,
+                                                    uint8_t * endpoints)
+{
+}
+
+/** @brief Gpd Commissioning
+ *
+ * This function is called by the Green Power Server upon expiry of either the switch commissioning
+ * or multisensor commissioning timer.
+ *
+ * @param appInfo   Ver.: always
+ */
+void emberAfGreenPowerServerCommissioningTimeoutCallback(uint8_t commissioningTimeoutType,
+                                                         uint8_t numberOfEndpoints,
+                                                         uint8_t * endpoints)
+{
+}
+
+/** @brief Gpd Commissioning
+ *
+ * This function is called by the Green Power Server to proceed with updating the InvolveTC bit
+ * of the security level attribute.
+ *
+ * @param appInfo   Ver.: always
+ */
+bool emberAfGreenPowerServerUpdateInvolveTCCallback(EmberStatus status)
+{
+  bool handled = false;
+  return handled;
+}

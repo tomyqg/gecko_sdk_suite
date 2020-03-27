@@ -1,0 +1,15 @@
+/** @brief called from idle-sleep plugin before going into em4 sleep mode 
+ *  This could be implemented by app
+ *  to store restart sensitive app variables in RTCC RAM
+ */
+void emberPluginEM4BeforeEM4Callback(void)
+{
+}
+
+/** @brief called from idle-sleep plugin after coming back from em4 sleep mode 
+ *  This could be implemented by app
+ *  to restore restart sensitive app variables from RTCC RAM
+ */
+void emberPluginEM4AfterEM4Callback(void)
+{
+}

@@ -1,0 +1,21 @@
+#ISD afv6
+# ISD version: 3.4.2706
+
+# Application configuration
+appId: ble
+architecture: efr32~family[B]~performance[P]~radio[232]~flash[256K]~temp[G]~package[M]~pins[48]+BRD4100A+iar
+deviceName: ncp-host
+generationDirectory: PATH(ISC_RELATIVE):.
+
+# UI customization
+hiddenLayoutElements: plugins,callbacks,other,radio
+
+# Setup configurations
+{setupId:hwConfig
+featureLevel=1
+active=true
+}
+
+{setupId:bleGattConfigurator
+<?xml version="1.0" encoding="UTF-8"?><gatt gatt_caching="false" generic_attribute_service="true" header="gatt_db.h" name="Empty BLE GATT" out="gatt_db.c" prefix="gattdb_"/>
+}

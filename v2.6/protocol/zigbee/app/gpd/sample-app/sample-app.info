@@ -1,0 +1,8 @@
+green-power-device {
+  name=Green Power Device
+  dir=green-power-device
+  isc=green-power-device/gpd.isc
+  include=.internal_hwconfig
+  include=gpd-callbacks.c,rail_config.c,rail_config.h,gpd-mbedtls-config.h
+  This is a Green Power Device.
+}

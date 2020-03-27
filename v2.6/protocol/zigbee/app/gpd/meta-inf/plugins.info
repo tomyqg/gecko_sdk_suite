@@ -1,0 +1,332 @@
+################################################## RAIL PLUGINS ############################################################
+# This file can list directories where to load plugins from or
+# declare virtual plugins.
+# Any line that says: pluginDirectory=RELATIVE/PATH/
+# will cause appbuilder to read in that directory for plugin subdirectories.
+#
+# Virtual plugins are declared with sections:
+# plugin(xxx) {
+#   BLOCK IDENTICAL TO plugin.properties
+# }
+
+
+# pluginDirectory=../plugin/
+
+plugin(gpd-startup) {
+  root= $STACK/
+  name=GPD App Startup
+  category=GPD
+  description=Necessary start up configurations (startup files and linker configurations) for GPD application.
+
+  architecture=efr32
+
+  providedApis=gpd-startup
+  requiredApis=rail-library
+
+  # Dumbo
+  (efr32~family[M]~series[1]~device_configuration[1]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32MG1P/Source/IAR/startup_efr32mg1p.s
+  (efr32~family[M]~series[1]~device_configuration[1]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32MG1P/Source/GCC/startup_efr32mg1p.S
+
+  (efr32~family[M]~series[1]~device_configuration[1]~performance[V]+iar):$DEVICE/SiliconLabs/EFR32MG1V/Source/IAR/startup_efr32mg1v.s
+  (efr32~family[M]~series[1]~device_configuration[1]~performance[V]+gcc):$DEVICE/SiliconLabs/EFR32MG1V/Source/GCC/startup_efr32mg1v.S
+
+  (efr32~family[M]~series[1]~device_configuration[1]~performance[B]+iar):$DEVICE/SiliconLabs/EFR32MG1B/Source/IAR/startup_efr32mg1b.s
+  (efr32~family[M]~series[1]~device_configuration[1]~performance[B]+gcc):$DEVICE/SiliconLabs/EFR32MG1B/Source/GCC/startup_efr32mg1b.S
+
+  (efr32~family[B]~series[1]~device_configuration[1]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32BG1P/Source/IAR/startup_efr32bg1p.s
+  (efr32~family[B]~series[1]~device_configuration[1]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32BG1P/Source/GCC/startup_efr32bg1p.S
+
+  (efr32~family[B]~series[1]~device_configuration[1]~performance[V]+iar):$DEVICE/SiliconLabs/EFR32BG1V/Source/IAR/startup_efr32bg1v.s
+  (efr32~family[B]~series[1]~device_configuration[1]~performance[V]+gcc):$DEVICE/SiliconLabs/EFR32BG1V/Source/GCC/startup_efr32bg1v.S
+
+  (efr32~family[B]~series[1]~device_configuration[1]~performance[B]+iar):$DEVICE/SiliconLabs/EFR32BG1B/Source/IAR/startup_efr32bg1b.s
+  (efr32~family[B]~series[1]~device_configuration[1]~performance[B]+gcc):$DEVICE/SiliconLabs/EFR32BG1B/Source/GCC/startup_efr32bg1b.S
+
+  (efr32~family[F]~series[1]~device_configuration[1]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32FG1P/Source/IAR/startup_efr32fg1p.s
+  (efr32~family[F]~series[1]~device_configuration[1]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32FG1P/Source/GCC/startup_efr32fg1p.S
+
+  (efr32~family[F]~series[1]~device_configuration[1]~performance[V]+iar):$DEVICE/SiliconLabs/EFR32FG1V/Source/IAR/startup_efr32fg1v.s
+  (efr32~family[F]~series[1]~device_configuration[1]~performance[V]+gcc):$DEVICE/SiliconLabs/EFR32FG1V/Source/GCC/startup_efr32fg1v.S
+
+  # Jumbo
+  (efr32~family[B]~series[1]~device_configuration[2]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32BG12P/Source/IAR/startup_efr32bg12p.s
+  (efr32~family[B]~series[1]~device_configuration[2]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32BG12P/Source/GCC/startup_efr32bg12p.S
+
+  (efr32~family[F]~series[1]~device_configuration[2]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32FG12P/Source/IAR/startup_efr32fg12p.s
+  (efr32~family[F]~series[1]~device_configuration[2]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32FG12P/Source/GCC/startup_efr32fg12p.S
+
+  (efr32~family[M]~series[1]~device_configuration[2]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32MG12P/Source/IAR/startup_efr32mg12p.s
+  (efr32~family[M]~series[1]~device_configuration[2]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32MG12P/Source/GCC/startup_efr32mg12p.S
+
+  # Nerio
+  (efr32~family[F]~series[1]~device_configuration[3]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32FG13P/Source/IAR/startup_efr32fg13p.s
+  (efr32~family[F]~series[1]~device_configuration[3]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32FG13P/Source/GCC/startup_efr32fg13p.S
+
+  (efr32~family[M]~series[1]~device_configuration[3]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32MG13P/Source/IAR/startup_efr32mg13p.s
+  (efr32~family[M]~series[1]~device_configuration[3]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32MG13P/Source/GCC/startup_efr32mg13p.S
+
+  (efr32~family[B]~series[1]~device_configuration[3]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32BG13P/Source/IAR/startup_efr32bg13p.s
+  (efr32~family[B]~series[1]~device_configuration[3]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32BG13P/Source/GCC/startup_efr32bg13p.S
+
+  (efr32~family[Z]~series[1]~device_configuration[3]~performance[P]+iar):$DEVICE/SiliconLabs/ZGM13/Source/IAR/startup_zgm13.s
+  (efr32~family[Z]~series[1]~device_configuration[3]~performance[P]+gcc):$DEVICE/SiliconLabs/ZGM13/Source/GCC/startup_zgm13.S
+
+  # Nixi
+  (efr32~family[F]~series[1]~device_configuration[4]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32FG14P/Source/IAR/startup_efr32fg14p.s
+  (efr32~family[F]~series[1]~device_configuration[4]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32FG14P/Source/GCC/startup_efr32fg14p.S
+
+  (efr32~family[F]~series[1]~device_configuration[4]~performance[V]+iar):$DEVICE/SiliconLabs/EFR32FG14V/Source/IAR/startup_efr32fg14v.s
+  (efr32~family[F]~series[1]~device_configuration[4]~performance[V]+gcc):$DEVICE/SiliconLabs/EFR32FG14V/Source/GCC/startup_efr32fg14v.S
+
+  (efr32~family[M]~series[1]~device_configuration[4]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32MG14P/Source/IAR/startup_efr32mg14p.s
+  (efr32~family[M]~series[1]~device_configuration[4]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32MG14P/Source/GCC/startup_efr32mg14p.S
+
+  (efr32~family[B]~series[1]~device_configuration[4]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32BG14P/Source/IAR/startup_efr32bg14p.s
+  (efr32~family[B]~series[1]~device_configuration[4]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32BG14P/Source/GCC/startup_efr32bg14p.S
+
+  (efr32~family[Z]~series[1]~device_configuration[4]~performance[P]+iar):$DEVICE/SiliconLabs/EFR32ZG14P/Source/IAR/startup_efr32zg14p.s
+  (efr32~family[Z]~series[1]~device_configuration[4]~performance[P]+gcc):$DEVICE/SiliconLabs/EFR32ZG14P/Source/GCC/startup_efr32zg14p.S
+
+  # Panther
+  (efr32~family[M]~series[2]~device_configuration[1]+iar):$DEVICE/SiliconLabs/EFR32MG21/Source/IAR/startup_efr32mg21.s
+  (efr32~family[M]~series[2]~device_configuration[1]+gcc):$DEVICE/SiliconLabs/EFR32MG21/Source/GCC/startup_efr32mg21.s
+
+  (efr32~family[B]~series[2]~device_configuration[1]+iar):$DEVICE/SiliconLabs/EFR32BG21/Source/IAR/startup_efr32bg21.s
+  (efr32~family[B]~series[2]~device_configuration[1]+gcc):$DEVICE/SiliconLabs/EFR32BG21/Source/GCC/startup_efr32bg21.s
+
+  setup(additionalFiles) {
+  }
+
+  setup(template) {
+    linkerProgramEntryLabel=__iar_program_start
+    # the .icf file directory logic is moved to connect/meta-inf/template_linker.properties.
+    # someone decided to create a special folder for Panther parts instead of using
+    # the normal path pattern.
+    (efr32~series[1]):linkerIcfFile=${TOOLKIT_DIR}\config\linker\SiliconLaboratories\$--partNumber;U--$.icf
+    (efr32~series[2]):linkerIcfFile=${TOOLKIT_DIR}\config\linker\SiliconLaboratories\$--family;U--$\$--partNumber;U--$.icf
+    linkerLdFile=$--halDir--$/../../Device/SiliconLabs/$--family;U--$/Source/GCC/$--family--$.ld
+
+    linkerNoSys=
+    psstoreSize=2048
+    longTokenSize=0
+    simeepromSize=0
+    (efr32~series[1]):lockbitsInMainflashSize=0
+    (efr32~series[2]):lockbitsInMainflashSize=8192
+    headerSize=256
+    (efr32~series[1]~device_configuration[2]):headerSize=512
+    (efr32~series[2]~device_configuration[1]):headerSize=512
+  }
+}
+
+plugin(gpd-hal) {
+  root=$STACK
+  name=HAL Library
+  category=GPD HAL
+  description=Necessary HAL files for GPD to work
+
+  architecture=efr32
+
+  providedApis=gpd-hal
+
+  #Files that are released in source
+  $EMLIB/src/em_assert.c
+  $EMLIB/src/em_rtc.c
+  $EMLIB/src/em_cryotimer.c
+  $EMLIB/src/em_letimer.c
+  $EMLIB/src/em_crypto.c
+
+  #App level hal stuff
+  $RAIL_LIB/hal/hal_common.c
+  $RAIL_LIB/hal/efr32/hal_efr.c
+
+  #BSP
+  $KIT/common/bsp/bsp_stk_leds.c
+  $KIT/common/bsp/bsp_stk.c
+  $KIT/common/bsp/bsp_init.c
+  $KIT/common/drivers/dmactrl.c
+  $KIT/common/drivers/i2cspm.c
+  #$KIT/common/drivers/retargetserial.c
+  $KIT/common/drivers/retargetio.c
+  $KIT/common/drivers/udelay.c
+  $KIT/common/drivers/mx25flash_spi.c
+
+  setup(additionalFiles) {
+    PATH(HAL_RELATIVE):..
+    PATH(HAL_RELATIVE):
+    PATH(HAL_RELATIVE):micro
+    PATH(HAL_RELATIVE):micro/cortexm3/common
+    PATH(HAL_RELATIVE):micro/cortexm3/efm32/config
+    PATH(HAL_RELATIVE):micro/cortexm3/efm32
+    PATH(ABSOLUTE):$CMSIS/Include
+    PATH(ABSOLUTE):$EMDRV/dmadrv/inc
+    PATH(ABSOLUTE):$EMDRV/rtcdrv/config
+    PATH(ABSOLUTE):$EMDRV/rtcdrv/inc
+    PATH(ABSOLUTE):$EMDRV/sleep/inc
+    PATH(ABSOLUTE):$EMDRV/ustimer/config
+    PATH(ABSOLUTE):$EMDRV/ustimer/inc
+    PATH(ABSOLUTE):$EMDRV/gpiointerrupt/inc
+    PATH(ABSOLUTE):$EMDRV/common/inc
+    PATH(ABSOLUTE):$EMLIB/inc
+    PATH(ABSOLUTE):$KIT/common
+    PATH(ABSOLUTE):$KIT/common/bsp
+    PATH(ABSOLUTE):$KIT/common/drivers
+    PATH(ABSOLUTE):$KIT/common/halconfig
+    PATH(ABSOLUTE):$HALCONFIG/inc/hal-config
+    PATH(ABSOLUTE):$RAIL_LIB/plugin/pa-conversions
+    PATH(ABSOLUTE):$RAIL_LIB/hal/efr32
+    PATH(ABSOLUTE):$RAIL_LIB/hal
+  }
+}
+
+plugin(gpd-mbedtls) {
+  name=mbed TLS Common
+  description=This plugin includes the mbed TLS library files as well as the Silicon Labs provided mbed TLS plugin files. To configure mbed TLS, a configuration should be provided. Different flavors of the mbed TLS configuration file are delegated by corresponding plugins.
+
+  category=Utility
+  qualityString=Production Ready
+  quality=production
+  includedByDefault=false
+
+  #architecture=efr32,simulation
+  architecture=efr32
+
+  root=$MBEDTLS
+
+  providedApis=mbedtls
+  requiredApis=gpd-mbedtls-config
+
+  library/arc4.c
+  library/ecp.c
+  library/ecdh.c
+  library/bignum.c
+  library/des.c
+  library/ecp_curves.c
+  library/aes.c
+  library/sha256.c
+  library/ctr_drbg.c
+  library/entropy.c
+  library/ccm.c
+  library/gcm.c
+  library/camellia.c
+  library/blowfish.c
+  library/cmac.c
+  library/cipher.c
+  library/cipher_wrap.c
+  library/threading.c
+
+  sl_crypto/src/aes_aes.c
+  sl_crypto/src/crypto_aes.c
+  sl_crypto/src/crypto_ble.c
+  sl_crypto/src/crypto_ecp.c
+  sl_crypto/src/crypto_management.c
+  sl_crypto/src/crypto_sha.c
+  sl_crypto/src/entropy_adc.c
+  sl_crypto/src/entropy_rail.c
+  sl_crypto/src/radioaes.c
+  sl_crypto/src/radioaes_aes.c
+  sl_crypto/src/radioaes_ble.c
+  sl_crypto/src/se_aes.c
+  sl_crypto/src/se_ccm.c
+  sl_crypto/src/se_cmac.c
+  sl_crypto/src/se_ecp.c
+  sl_crypto/src/se_management.c
+  sl_crypto/src/se_sha.c
+  sl_crypto/src/se_trng.c
+  sl_crypto/src/shax.c
+  sl_crypto/src/trng.c
+
+  setup(additionalFiles) {
+    PATH(ABSOLUTE):$MBEDTLS
+    PATH(ABSOLUTE):$MBEDTLS/include/mbedtls
+    PATH(ABSOLUTE):$MBEDTLS/include
+    PATH(ABSOLUTE):$MBEDTLS/sl_crypto/include
+  }
+}
+
+plugin(gpd-mbedtls-config) {
+  name=mbed TLS Multiprotocol Configuration
+  description=This plugin provides the mbed TLS configuration file that enables the cryptographic algorithms that meet Silicon Labs multiprotocol requirements. The mbed TLS configuration file can be found at config-multiprotocol.h.
+
+  category=Utility
+  qualityString=Production Ready
+  quality=production
+  includedByDefault=false
+
+  #architecture=efr32+iar,simulation
+  architecture=efr32
+
+  providedApis=gpd-mbedtls-config
+
+  root=$SILABS_CORE/memory_manager
+
+  # Moved from mbedtls-common/plugin.properties:
+  # Stolen straight from the brain of Rob Alexander:
+  # In theory we should always be including mbedTLS whenever we use Micrium. The
+  # reason for this is that our version of mbedTLS provides hardware crypto
+  # support and if the hardware supports this. The stack and the app can use
+  # different instances of the crypto hardware (if the hardware supports it) so as
+  # not to block multiple crypto operations. Zigbee doesn't make much use of
+  # crypto hardware but if the customer wants to have their own tasks use crypto
+  # they will need it. So by extension, we should include mbedtls for all Micrium
+  # apps and thus sl_malloc.c
+  sl_malloc.c
+}
+
+plugin(gpd-components) {
+  name=GPD Components
+  description=This plugin provides the Componnets for the GPD application.
+
+  category=GPD
+  qualityString=Alpha Quality
+  quality=alpha
+  includedByDefault=true
+
+  architecture=efr32
+
+  providedApis=gpd-components
+
+  root=$FRAMEWORK/../gpd/components
+
+  gpd-nv.c
+  gpd-nwk.c
+  gpd-rail.c
+  gpd-security.c
+  gpd-timers.c
+  gpd-send-receive.c
+
+  setup(additionalFiles) {
+    PATH(ABSOLUTE):$FRAMEWORK/../gpd/components
+  }
+
+  callbacks=$FRAMEWORK/../gpd/components/callback.info
+}
+
+plugin(psstore) {
+  name=PS Store
+  description=Persistent Store (PS Store) can be used to manage the data in the flash memory of the device. Data stored in PS keys within the flash memory is persistent across reset and power cycling of the device.
+  category=HAL
+  quality=development
+  root=$HAL/plugin/psstore
+
+  architecture=efr32
+
+  providedApis=psstore
+  api.psstore.header=store.h
+
+  requiredApis=gpd-hal
+
+  crc32.c
+  #In Gpd there is no serial port or debug implementation , hence cli is commented untill then
+  #psstore-cli.c
+  psstore-flash.c
+  store.c
+
+  setup(commandLineConfiguration) {
+    plugin ps-store dump, emAfPluginPsStoreDump
+    plugin ps-store init, emAfPluginPsStoreInit
+    plugin ps-store print-tags, emAfPluginPsStorePrintTags
+    plugin ps-store write-tag, emAfPluginPsStoreWriteTag
+    plugin ps-store delete-tag, emAfPluginPsStoreDeleteTag
+  }
+}
+

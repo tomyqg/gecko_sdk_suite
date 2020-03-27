@@ -1,0 +1,45 @@
+****************************** USE NOTICE ******************************** 
+
+****************  COMPONENTS AUTHORIZED FOR DISTRIBUTION *****************
+
+None
+
+****************** OBJECT CODE AUTHORIZED FOR DISTRIBUTION ***************
+
+The libraries and the encapsulated object code files listed below may be distributed in a separate file or linked with your application:
+
+libecc.r26
+libecc.lib
+ecc.r51
+libecc.r51
+libecc.a
+libecc.r90
+eccapi.xap
+ecc.r34
+ecc.r43
+ 
+
+********** CODE AND DOCUMENTATION NOT AUTHORIZED FOR DISTRIBUTION *******
+
+The SDK documentation and header files cannot be redistributed.  Parties requiring access to these files must license the Certicom SDK directly.
+
+UserGuide.pdf
+readme
+readme.sbmce_zse
+eccapi.h
+sample.c
+
+************ REQUIREMENT TO PASS ON AUTHORIZED USE NOTICE ***********
+
+The following Authorized Use Notice must be included with any distribution of your product or application unless your product or application is a device which uses Certicom-licensed ZigBee certificates in an authorized fashion.
+  
+Licensees of your product must similarly include this Authorized Use Notice unless their product or application is a device which will use Certicom-licensed ZigBee certificates in an authorized fashion.
+
+------------------------ Authorized Use Notice ---------------------------
+
+This product or application contains technology patented by Certicom. Use of this technology, including but not limited to the Certificate Based Key Agreement (CBKE) protocol requires a Certicom-licensed ZigBee digital certificate.
+
+--------------------------------------------------------------------------
+****************************************************************************
+
+

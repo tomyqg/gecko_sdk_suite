@@ -1,0 +1,244 @@
+#ISD afv6
+# Simplicity Studio version: 4.22.1.201711291319-2223
+
+# Application configuration
+stackId: com.silabs.sdk.stack.super
+stackRoot: C:\Silabs\Git\EmbeddedSoftware\super
+appId: ble
+frameworkRoot: app\bluetooth_dev\appbuilder\fwk
+architecture: efr32~family[m]~series[2]~device_configuration[1]~performance[a]~radio[010]~flash[1024k]~temp[i]~package[m]~pins[32]~!module+brd4181a+gcc
+exactArchitectureToolchain: com.silabs.ss.tool.ide.arm.toolchain.gnu.cdt:7.2.1.20170904
+deviceName: soc-rangetest-rail-dmp-std-brd4181a-gcc
+sourceSampleAppId: soc-rangetest-rail-dmp-std
+generationDirectory: PATH(ISC_RELATIVE):.
+
+# Devices
+
+# UI customization
+hiddenLayoutElements: plugins,callbacks,other
+
+# Setup configurations
+{setupId:additionalFiles
+}
+{setupId:bleGattConfigurator
+<?xml version="1.0" encoding="UTF-8"?>
+<gatt generic_attribute_service="true" header="gatt_db.h" name="Custom BLE GATT" out="gatt_db.c" prefix="gattdb_">
+  <service advertise="false" id="generic_access" name="Generic Access" requirement="mandatory" sourceId="org.bluetooth.service.generic_access" type="primary" uuid="1800">
+    <informativeText>Abstract: The generic_access service contains generic information about the device. All available Characteristics are readonly. </informativeText>
+    <characteristic id="device_name" name="Device Name" sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
+      <informativeText/>
+      <value length="26" type="utf-8" variable_length="false">soc-rangetest-rail-dmp-std</value>
+      <properties indicate="false" indicate_requirement="excluded" notify="false" notify_requirement="excluded" read="true" read_requirement="mandatory" reliable_write="false" reliable_write_requirement="excluded" write="false" write_no_response="false" write_no_response_requirement="excluded" write_requirement="optional"/>
+    </characteristic>
+    <characteristic id="appearance" name="Appearance" sourceId="org.bluetooth.characteristic.gap.appearance" uuid="2A01">
+      <informativeText>Abstract: The external appearance of this device. The values are composed of a category (10-bits) and sub-categories (6-bits). </informativeText>
+      <value length="2" type="hex" variable_length="false"/>
+      <properties indicate="false" indicate_requirement="excluded" notify="false" notify_requirement="excluded" read="true" read_requirement="mandatory" reliable_write="false" reliable_write_requirement="excluded" write="false" write_no_response="false" write_no_response_requirement="excluded" write_requirement="excluded"/>
+    </characteristic>
+  </service>
+  <service advertise="false" id="device_information" name="Device Information" requirement="mandatory" sourceId="org.bluetooth.service.device_information" type="primary" uuid="180A">
+    <informativeText>Abstract: The Device Information Service exposes manufacturer and/or vendor information about a device. Summary: This service exposes manufacturer information about a device. The Device Information Service is instantiated as a Primary Service. Only one instance of the Device Information Service is exposed on a device. </informativeText>
+    <characteristic id="manufacturer_name_string" name="Manufacturer Name String" sourceId="org.bluetooth.characteristic.manufacturer_name_string" uuid="2A29">
+      <informativeText>Abstract: The value of this characteristic is a UTF-8 string representing the name of the manufacturer of the device. </informativeText>
+      <value length="12" type="utf-8" variable_length="true">Silicon Labs</value>
+      <properties indicate="false" indicate_requirement="excluded" notify="false" notify_requirement="excluded" read="true" read_requirement="mandatory" reliable_write="false" reliable_write_requirement="excluded" write="false" write_no_response="false" write_no_response_requirement="excluded" write_requirement="excluded"/>
+    </characteristic>
+    <characteristic id="model_number_string" name="Model Number String" sourceId="org.bluetooth.characteristic.model_number_string" uuid="2A24">
+      <informativeText>Abstract: The value of this characteristic is a UTF-8 string representing the model number of the device. </informativeText>
+      <value length="33" type="utf-8" variable_length="false">efr32mg21a010f1024im32 - brd4181a</value>
+      <properties indicate="false" indicate_requirement="excluded" notify="false" notify_requirement="excluded" read="true" read_requirement="mandatory" reliable_write="false" reliable_write_requirement="optional" write="false" write_no_response="false" write_no_response_requirement="excluded" write_requirement="excluded"/>
+    </characteristic>
+    <characteristic id="serial_number_string" name="Serial Number String" sourceId="org.bluetooth.characteristic.serial_number_string" uuid="2A25">
+      <informativeText>Abstract: The value of this characteristic is a UTF-8 string representing the serial number of the device. </informativeText>
+      <value length="4" type="utf-8" variable_length="false">0000</value>
+      <properties indicate="false" indicate_requirement="excluded" notify="false" notify_requirement="excluded" read="true" read_requirement="mandatory" reliable_write="false" reliable_write_requirement="excluded" write="false" write_no_response="false" write_no_response_requirement="excluded" write_requirement="excluded"/>
+    </characteristic>
+    <characteristic id="hardware_revision_string" name="Hardware Revision String" sourceId="org.bluetooth.characteristic.hardware_revision_string" uuid="2A27">
+      <informativeText>Summary: The value of this characteristic is a UTF-8 string representing the hardware revision for the hardware within the device. </informativeText>
+      <value length="1" type="utf-8" variable_length="false"/>
+      <properties indicate="false" indicate_requirement="excluded" notify="false" notify_requirement="excluded" read="true" read_requirement="mandatory" reliable_write="false" reliable_write_requirement="excluded" write="false" write_no_response="false" write_no_response_requirement="excluded" write_requirement="excluded"/>
+    </characteristic>
+    <characteristic id="firmware_revision_string" name="Firmware Revision String" sourceId="org.bluetooth.characteristic.firmware_revision_string" uuid="2A26">
+      <informativeText>Abstract: The value of this characteristic is a UTF-8 string representing the firmware version of the device. </informativeText>
+      <value length="5" type="utf-8" variable_length="false">0.0.1</value>
+      <properties indicate="false" indicate_requirement="excluded" notify="false" notify_requirement="excluded" read="true" read_requirement="mandatory" reliable_write="false" reliable_write_requirement="excluded" write="false" write_no_response="false" write_no_response_requirement="excluded" write_requirement="excluded"/>
+    </characteristic>
+  </service>
+  <service advertise="false" name="Range Test" requirement="mandatory" sourceId="custom.type" type="primary" uuid="530aa649-17e6-4d62-9f20-9e393b177e63">
+    <informativeText>Custom service</informativeText>
+    <characteristic id="PER" name="PER" sourceId="custom.type" uuid="d1e93c9c-62e0-4962-9cb3-df86d419b5da">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional"/>
+      <descriptor id="PER_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0000e803</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="MA" name="MA" sourceId="custom.type" uuid="cde92958-3f56-4bc6-9e6b-11b5c551e903">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional"/>
+      <descriptor id="MA_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0000e803</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="pktsSent" name="pktsSent" sourceId="custom.type" uuid="eb2438fe-a09e-4015-b511-91f52b581639">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0x0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional"/>
+      <descriptor id="pktsSent_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0000ffff</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="pktsCnt" name="pktsCnt" sourceId="custom.type" uuid="d6781c5d-9a48-4c97-80b8-f8082030ca5d">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0x0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional"/>
+      <descriptor id="pktsCnt_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0000ffff</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="pktsRcvd" name="pktsRcvd" sourceId="custom.type" uuid="6c19509b-f0d1-4f0e-84ce-464dba7c573a">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0x0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional"/>
+      <descriptor id="pktsRcvd_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0000ffff</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="pktsReq" name="pktsReq" sourceId="custom.type" uuid="6defa84c-75e1-4b5f-8729-140cdfaee745">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0x0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="pktsReq_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0100ffff</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="phy" name="phy" sourceId="custom.type" uuid="8a354244-c1ff-4318-8834-0e86efac1067">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false"/>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+    </characteristic>
+    <characteristic id="phyList" name="phyList" sourceId="custom.type" uuid="05dca698-76e2-4c30-8e22-2ce22e81b968">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="255" type="user" variable_length="true"/>
+      <properties read="true" read_requirement="optional"/>
+    </characteristic>
+    <characteristic id="channel" name="channel" sourceId="custom.type" uuid="e8811f97-f736-4e52-a9f8-4b771792c114">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0x0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional"/>
+      <descriptor id="channel_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0000ffff</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="radioMode" name="radioMode" sourceId="custom.type" uuid="660b91bd-1a4c-428a-9e7e-27ce8a945618">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false">0x00</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="radioMode_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="2" type="hex" variable_length="false">0102</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="frequency" name="frequency" sourceId="custom.type" uuid="3a5404eb-299b-4a3c-a76c-71bf52af1457">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0x0000</value>
+      <properties read="true" read_requirement="optional"/>
+      <descriptor id="frequency_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">0000c409</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="txPower" name="txPower" sourceId="custom.type" uuid="16be0ebf-5b8d-45d8-8128-d1abb4b71788">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="2" type="user" variable_length="false">0x0000</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="txPower_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="4" type="hex" variable_length="false">6affc800</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="destID" name="destID" sourceId="custom.type" uuid="41ded549-4298-4911-8c16-3088a7e41d5f">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false">0x00</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="destID_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="2" type="hex" variable_length="false">00ff</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="srcID" name="srcID" sourceId="custom.type" uuid="9438acdf-42f5-463d-9c73-c5a3427fa731">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false">0x00</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="srcID_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="2" type="hex" variable_length="false">00ff</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="payload" name="payload" sourceId="custom.type" uuid="0212cda0-4ae2-471a-9743-a318374f14de">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false">0x00</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="payload_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="2" type="hex" variable_length="false">0518</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="maSize" name="maSize" sourceId="custom.type" uuid="b9c9bc5a-f218-4e44-b632-743880e8c7c1">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false">0x00</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="maSize_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="2" type="hex" variable_length="false">2080</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="log" name="log" sourceId="custom.type" uuid="d05bd818-6000-489f-8cc0-aa4b93a5edaf">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false">0x00</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="log_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="2" type="hex" variable_length="false">0001</value>
+      </descriptor>
+    </characteristic>
+    <characteristic id="isRunning" name="isRunning" sourceId="custom.type" uuid="3d28d0e4-2669-4784-a80a-ed8722a563c6">
+      <informativeText>Custom characteristic</informativeText>
+      <value length="1" type="user" variable_length="false">0x00</value>
+      <properties indicate="true" indicate_requirement="optional" read="true" read_requirement="optional" write="true" write_requirement="optional"/>
+      <descriptor id="isRunning_valid_range" name="Valid Range" sourceId="org.bluetooth.descriptor.valid_range" uuid="2906">
+        <properties discoverable="true" discoverable_requirement="optional" read="true" read_requirement="optional"/>
+        <value length="2" type="hex" variable_length="false">0001</value>
+      </descriptor>
+    </characteristic>
+  </service>
+  <service advertise="false" name="Silicon Labs OTA" requirement="mandatory" sourceId="com.silabs.service.ota" type="primary" uuid="1D14D6EE-FD63-4FA1-BFA4-8F47B42119F0">
+    <informativeText>Abstract: The Silicon Labs OTA Service enables over-the-air firmware update of the device. </informativeText>
+    <characteristic id="ota_control" name="Silicon Labs OTA Control" sourceId="com.silabs.characteristic.ota_control" uuid="F7BF3564-FB6D-4E53-88A4-5E37E0326063">
+      <informativeText>Abstract: Silicon Labs OTA Control. </informativeText>
+      <value length="1" type="user" variable_length="false"/>
+      <properties write="true" write_requirement="optional"/>
+    </characteristic>
+  </service>
+</gatt>
+}
+{setupId:callbackConfiguration
+}
+{setupId:hwConfig
+featureLevel=1
+active=false
+}
+{setupId:macros
+}
+{setupId:quizz
+}
+

@@ -1,0 +1,2 @@
+em250/260 ECC Library Version: 1.0.1.7
+em35x     ECC Library Version: 1.0.1.20

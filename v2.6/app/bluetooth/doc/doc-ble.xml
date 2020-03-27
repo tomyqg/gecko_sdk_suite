@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<contentItems>
+  <contentItemData category="Quick Start Guides" itemURI="qsg155-dynamic-multiprotocol-demo-quick-start-guide.pdf" label="QSG155: Using the Silicon Labs Dynamic Multiprotocol Demonstrations">
+    <description>Shows how to demonstrate Dynamic Multiprotocol functionality using a Bluetooth LE smartphone app with either Zigbee-Bluetooth or RAIL-Bluetooth demo applications.</description>
+  </contentItemData>
+  <contentItemData category="Application Notes" itemURI="an1042-bt-ncp-mode.pdf" label="AN1042: Using the Silicon Labs Bluetooth Stack in Network Co-Processor Mode">
+    <description>Covers tool use, C language application development flow, and customizing the examples included in the stack.</description>
+  </contentItemData>
+  <contentItemData category="Application Notes" itemURI="an1046-bt-dtm.pdf" label="AN1046: Bluetooth Radio Frequency Physical Layer Evaluation">
+    <description>Reviews performing radio frequency physical layer evaluation with EFR32BG SoCs and BGM modules using the Direct Test Mode protocol.</description>
+  </contentItemData>
+</contentItems>

@@ -1,0 +1,95 @@
+#ISD afv6
+# Simplicity Studio version: 5.3.1.qualifier
+
+# Application configuration
+appId: gpd
+frameworkRoot: app/gpd
+architecture: efr32~family[M]~series[1]~device_configuration[2]~performance[P]~radio[332]~flash[1024K]~temp[G]~package[L]~pins[125]~!module+BRD4162A+iar
+deviceName: gpd
+generationDirectory: PATH(ISC_RELATIVE):.
+
+
+# Plugin configuration
+appPlugin: apps=true
+appPlugin: coexistence-stub=true
+appPlugin: gpd-components=true
+appPlugin: gpd-hal=true
+appPlugin: gpd-mbedtls=true
+appPlugin: gpd-mbedtls-config=true
+appPlugin: gpd-startup=true
+appPlugin: psstore=true
+appPlugin: rail-library=true
+appPlugin: rail-library-mp=false
+
+# Setup configurations
+{setupId:additionalFiles
+}
+{setupId:boardHeader
+allowMissingHeader:false
+useHeaderInPlace:false
+EFR32MG1P132F256GM48=BOARD,efr32/brd4153a,,
+EFR32MG1P232F256GM48=BOARD,efr32/brd4151a,,
+EFR32MG1P233F256GM48=BOARD,efr32/brd4150a,,
+efr32~family[M]~series[1]~device_configuration[2]~performance[P]~radio[332]~flash[1024K]~temp[G]~package[L]~pins[125]~!module+BRD4162A+iar=USE_HARDWARE_CONFIGURATOR,,,
+}
+{setupId:bookkeeping
+}
+{setupId:bootloader
+efr32=null,
+}
+{setupId:callbackConfiguration
+emberGpdAfPluginMainCallback:false
+emberGpdAfPluginNvInitCallback:false
+emberGpdAfPluginNvSaveAndLoadCallback:false
+}
+{setupId:eventConfiguration
+}
+{setupId:ezsp
+}
+{setupId:genConfig
+}
+{setupId:halOptions
+}
+{setupId:hwConfig
+lastArchitectureId=efr32~family[M]~series[1]~device_configuration[2]~performance[P]~radio[332]~flash[1024K]~temp[G]~package[L]~pins[125]~!module+BRD4162A+iar
+featureLevel=1
+active=true
+}
+{setupId:information
+\{key:description
+Green Power Device Application.
+This sample application demonestartes a Green power device with following capability that is pre-configured in plugin GPD App Configuration.
+
+Device = GPD On/Off Switch (Devive Id = 2)
+Application Id = 0 , 4 Byte Device Src Address.
+Fixed Location = True,
+Commissioning = Biddirectional with Key Request and Key Proteced
+Security Level = 3
+Security Key type used = OOB Individula (Ket Type 4)
+
+Commissioning green power device with the Z3LightCombo is as follows:
+1. Enter the Z3LightCombo into commissioning state by pressing the PB0 button on the light board.
+2. Then follow the series of button presses on the GPD board
+     Press the PB0 4 times leaving a time of more than 1 second in between, following series of commands will be sent for each press of the button
+     i.     Channel request: To find the channel of the zigbee network and use use that for commissioning requests
+     ii.     Commissioning command: Commissioning request
+     iii.     Commissioning command: To collect the commissioning reply
+     iv.     Commissioning command: To indicate the successful commissioning
+3. Then press the PB1 to see the Z3LightCombo toggle on/off.
+4. To decommission the the GPD and bring it to factory reset state press the PB0 fon the GPD or more than 10 seconds.
+\}
+}
+{setupId:macros
+-DMBEDTLS_CONFIG_FILE="gpd-mbedtls-config.h"
+-DGPD_APP_TIME_IN_QS_TO_ENTER_EM4=60
+-DGPD_APP_BUTTON_LONG_PRESS_TIME_IN_QS=40
+}
+{setupId:quizz
+}
+{setupId:serial
+useHwConfigurator=false
+}
+
+# Plugin options
+pluginOption(efr32): EMBER_AF_PLUGIN_HAL_CONFIG_VCOM_ENABLE,0
+pluginOption(efr32): EMBER_AF_PLUGIN_HAL_CONFIG_VUART_ENABLE,1
